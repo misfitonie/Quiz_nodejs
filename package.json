@@ -1,0 +1,20 @@
+{
+  "name": "tp-nodejs",
+  "version": "1.0.0",
+  "description": "quizz up",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "bin": {
+    "quiz": "./index.js"
+  },
+  "author": "Théo FERREIRA",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "commander": "^2.19.0",
+    "inquirer": "^6.2.0",
+    "translate": "^1.0.3"
+  }
+}
