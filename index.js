@@ -1,9 +1,18 @@
 #!/usr/bin/env node
+ 
+
+
+// MODULES
+
 
 const axios = require('axios')
 const program = require('commander')
 const translate = require('translate')
 const inquirer = require('inquirer')
+
+
+// COMMANDES
+
 
 program
     .version("1.0.0")
@@ -13,7 +22,7 @@ program
     .option('-a, --animal','quiz animal')
     .option('-s, --sport','quiz sport')
     .parse(process.argv)
-
+    
 const URL_category = "https://opentdb.com/api_category.php"
 const URL_questions = "https://opentdb.com/api.php?amount=10&category="
 let obj_category = {}
@@ -24,7 +33,8 @@ let reponse = []
 
 
 
-// fonction récuperant mes différentes catégories via l'api
+// FONCTION API (CATEGORIES)
+
 function getCategory() {
     axios.get(URL_category)
     .then((reponse)=> {
@@ -42,6 +52,7 @@ function getCategory() {
     
 }
 
+// FONCTION API (QUESTIONS)
 
 function getQuestion (nbCategory){
     axios.get(URL_questions+nbCategory)
@@ -53,14 +64,16 @@ function getQuestion (nbCategory){
                 reponse[i]= obj_question[i].correct_answer
                 
             })()
+            quiz()
         }
-        quiz()
     })
     .catch((err)=>{
         console.log('Api introuvable' , err)
     })
 
 }
+
+// FONCTION
 
 
 function quiz(){
@@ -93,6 +106,9 @@ function quiz(){
        console.log('Bien joué')
    })
 }
+
+// PROGRAMME
+
 
 if (program.category){
     getCategory()
